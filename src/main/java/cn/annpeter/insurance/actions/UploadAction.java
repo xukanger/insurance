@@ -10,6 +10,8 @@ import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.annpeter.insurance.utils.WebUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -54,7 +56,8 @@ public class UploadAction extends BaseFileRequestAction{
 			FileUtils.copyFile(getFileData(), destFile);
 			
 			String realPath = destFile.getPath();
-			String staticPath = realPath.substring(realPath.lastIndexOf("/static"), realPath.length());//获得相对于static目录的路径
+			String staticPath = realPath.substring(realPath.lastIndexOf("static"), realPath.length());//获得相对于static目录的路径
+            //String urlFullPath = WebUtils.getBasePath()+staticPath;
 
             //在strtus中使用URLEncode不能访问,后期加入Nginx,可以进行修改
 			//String url = URLEncoder.encode(staticPath, "UTF-8");

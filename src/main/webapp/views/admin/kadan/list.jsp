@@ -43,17 +43,20 @@
                         <s:iterator value='#request.KaDanArrayList' var="v">
                             <tr>
                                 <td><span style="line-height: 35px;text-align: center;"><s:property value='#v.id'/></span></td>
-                                <td><span style="line-height: 35px;text-align: center;"><s:property value='#v.card_name'/></span></td><!--显示的是卡单的名称,而不是产品名称-->
+                                <td><span style="line-height: 35px;text-align: center;"><s:property value='#v.name'/></span></td><!--显示的是卡单的名称,而不是产品名称-->
                                 <td><span style="line-height: 35px;text-align: center;"><s:property value='#v.card_cate'/></span></td>
-                                <td><span style="line-height: 35px;text-align: center;"><s:property value='#v.card_price'/></span></td>
+                                <td><span style="line-height: 35px;text-align: center;"><s:property value='#v.price'/></span></td>
                                 <td><span style="line-height: 35px;text-align: center;"><s:property value='#v.product.getStartDateStr()'/></span></td>
                                 <td><span style="line-height: 35px;text-align: center;"><s:property value='#v.product.getEndDateStr()'/></span></td>
                                 <td>
                                     <span style="line-height: 35px;text-align: center;">
-                                        <span class="label label-success label-sm">
-                                            <s:if test='#v.product.status == 1'>开启</s:if>
-                                            <s:elseif test='#v.product.status == 0'>关闭</s:elseif>
-                                        </span>
+                                        <s:if test='#v.product.status == 1'>
+                                            <span class="label label-success label-sm">开启</span>
+                                        </s:if>
+                                        <s:elseif test='#v.product.status == 0'>
+                                            <span class="label label-warning label-sm">关闭</span>
+                                        </s:elseif>
+
                                     </span>
                                 </td>
                                 <td><span style="line-height: 35px;text-align: center;">

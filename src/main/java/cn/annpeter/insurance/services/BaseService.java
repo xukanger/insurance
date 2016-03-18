@@ -1,7 +1,5 @@
 package cn.annpeter.insurance.services;
 
-import cn.annpeter.insurance.entities.products.JsonKaDanShow;
-import cn.annpeter.insurance.entities.products.ProductKaDan;
 import cn.annpeter.insurance.utils.Constant;
 import cn.annpeter.insurance.utils.ExceptionUtils;
 import org.springframework.stereotype.Service;
@@ -18,38 +16,47 @@ import java.util.List;
 @Service
 public class BaseService {
 
+    public Object getJsonObj(Object sourObj, Class clazz){
+        try{
+            Object destObj = clazz.newInstance();
+            Field[] fields = clazz.getDeclaredFields();
+
+            for(int fieldIndex = 0; fieldIndex < fields.length; fieldIndex++){
+                Field field = fields[fieldIndex];
+
+                //从原对象中获取值
+                Object fieldValue = getFieldValueByName(field.getName(), sourObj);
+
+                //将获取到的值赋值给新的对象
+                setFieldValueByName(field.getName(), destObj, fieldValue);
+            }
+            return destObj;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * 从一个list中,将list的子元素转换为clazz类型的子元素,
      * 注意,clazz类型中的名称一定要与list子元素相匹配
-     * @param sorList
+     * @param sourList
      * @param clazz
      * @return
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
-    public List<Object> getJsonList(List<?> sorList, Class clazz) throws ExceptionUtils {
+    public List<?> getJsonList(List<?> sourList, Class clazz){
 
         try{
             Field[] fields = clazz.getDeclaredFields();
             List < Object> result  = new ArrayList<>();
 
-            Iterator<?> iterator = sorList.iterator();
+            Iterator<?> iterator = sourList.iterator();
 
             while (iterator.hasNext()){
                 Object sourObj = iterator.next();
-
-                Object destObj = clazz.newInstance();
-
-                for(int fieldIndex = 0; fieldIndex < fields.length; fieldIndex++){
-                    Field field = fields[fieldIndex];
-
-                    //从原对象中获取值
-                    Object fieldValue = getFieldValueByName(field.getName(), sourObj);
-
-                    //将获取到的值赋值给新的对象
-                    setFieldValueByName(field.getName(), destObj, fieldValue);
-                }
+                Object destObj = getJsonObj(sourObj, clazz);
 
                 result.add(destObj);
             }

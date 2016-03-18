@@ -1,5 +1,7 @@
 package cn.annpeter.insurance.actions.app;
 
+import cn.annpeter.insurance.entities.products.JsonKaDanList;
+import cn.annpeter.insurance.entities.products.JsonKaDanProfile;
 import cn.annpeter.insurance.entities.products.ProductKaDan;
 import cn.annpeter.insurance.services.KaDanService;
 import cn.annpeter.insurance.utils.ExceptionUtils;
@@ -38,7 +40,7 @@ public class KaDanAction extends JsonBaseReqestAction {
             //当id有误时,返回错误信息
             String kId = this.getUrlParameter("id");
 
-            ProductKaDan productKaDan = (ProductKaDan)kaDanService.getById(Integer.valueOf(kId));
+            JsonKaDanProfile productKaDan = (JsonKaDanProfile)kaDanService.getJsonKaDanProfile(Integer.valueOf(kId));
 
             sendSuccessMessageCycleDetection("请求卡单成功", productKaDan);
         }catch (Exception e){
@@ -58,7 +60,7 @@ public class KaDanAction extends JsonBaseReqestAction {
     public String list() throws UnsupportedEncodingException {
         try {
 
-            List < Object> result = (List< Object>)kaDanService.list();
+            List <JsonKaDanList> result = kaDanService.getJsonKaDanList();
 
             sendSuccessMessage("请求卡单列表成功", result);
         } catch (ExceptionUtils exceptionUtils) {

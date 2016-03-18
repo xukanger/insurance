@@ -7,7 +7,7 @@
       <configured-by-url>true</configured-by-url>
       <remarks>$PROJECT_DIR$/src/main/config/hibernate.cfg.xml</remarks>
       <jdbc-driver>oracle.jdbc.driver.OracleDriver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://www.annpeter.cn/insurance?characterEncoding=UTF-8</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost/insurance?characterEncoding=UTF-8</jdbc-url>
       <explain-plan-config>
         <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
       </explain-plan-config>

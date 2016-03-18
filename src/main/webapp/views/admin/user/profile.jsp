@@ -56,7 +56,7 @@
 							var ZEOA = new plupload.Uploader({
 							    runtimes: 'html5,flash,silverlight,html4',
 							    browse_button: 'ZEOA',
-							    url: '/static/admin/upload/index',
+							    url: '/admin/upload/index',
 							    flash_swf_url: '/static/admin/public/swf/Moxie.swf',
 							    silverlight_xap_url: '/static/admin/public/swf/Moxie.swf',
 							    multipart:true,

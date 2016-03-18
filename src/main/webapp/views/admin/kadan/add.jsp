@@ -42,8 +42,8 @@
                                         <div class="plupload_container" style="position: relative;">
                                             <div id="ZEOA" class="btn btn-info" style="position: relative; z-index: 1;">  <i class="fa fa-plus"></i> 上传文件 <span class="info"></span></div>
                                         </div>
-                                        <img src="<s:property value='#request.ProductKaDan.card_img_big'/>" style="display:none;"  alt="" id="cardImgBig" height="100">
-                                        <input type="hidden" id="cardImgBigUrl" name="productKaDan.card_img_big" value="<s:property value='#request.ProductKaDan.card_img_big'/>">
+                                        <img src="<s:property value='#request.ProductKaDan.img_big'/>" style="display:none;"  alt="" id="cardImgBig" height="100">
+                                        <input type="hidden" id="cardImgBigUrl" name="productKaDan.img_big" value="<s:property value='#request.ProductKaDan.img_big'/>">
                                         <script type="text/javascript">
                                             function uploadsingle(file, response) {
                                                 var url = response.result.url;
@@ -118,21 +118,21 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2">产品名称</label>
                                     <div class="col-md-6">
-                                        <input name="productKaDan.card_name" value="<s:property value='#request.ProductKaDan.card_name'/>" type="text" class="form-control">
+                                        <input name="productKaDan.name" value="<s:property value='#request.ProductKaDan.name'/>" type="text" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label col-md-2">产品描述</label>
                                     <div class="col-md-6">
-                                        <input name="productKaDan.card_desc" value="<s:property value='#request.ProductKaDan.card_desc'/>" type="text" class="form-control">
+                                        <input name="productKaDan.description" value="<s:property value='#request.ProductKaDan.description'/>" type="text" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label col-md-2">价格</label>
                                     <div class="col-md-6">
-                                        <input name="productKaDan.card_price" value="<s:property value='#request.ProductKaDan.card_price'/>" type="text" class="form-control">
+                                        <input name="productKaDan.price" value="<s:property value='#request.ProductKaDan.price'/>" type="text" class="form-control">
                                     </div>
                                 </div>
 
@@ -185,7 +185,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">产品详情</label>
                                     <div class="col-md-6">
-                                        <textarea class="form-control" name="productKaDan.card_detail"><s:property value='#request.ProductKaDan.card_detail'/></textarea>
+                                        <textarea class="form-control" name="productKaDan.detail"><s:property value='#request.ProductKaDan.detail'/></textarea>
                                     </div>
                                 </div>
 
@@ -201,7 +201,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">投保须知</label>
                                     <div class="col-md-6">
-                                        <textarea class="form-control" name="productKaDan.card_info"><s:property value='#request.ProductKaDan.card_info'/></textarea>
+                                        <textarea class="form-control" name="productKaDan.info"><s:property value='#request.ProductKaDan.info'/></textarea>
                                     </div>
                                 </div>
 
@@ -215,7 +215,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">保单形式</label>
                                     <div class="col-md-6">
-                                        <textarea class="form-control" name="productKaDan.card_form_detail"><s:property value='#request.ProductKaDan.card_form_detail'/></textarea>
+                                        <textarea class="form-control" name="productKaDan.form_detail"><s:property value='#request.ProductKaDan.form_detail'/></textarea>
                                     </div>
                                 </div>
 
