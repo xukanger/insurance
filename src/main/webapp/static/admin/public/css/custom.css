@@ -1,0 +1,16 @@
+/* here you can put your own css to customize and override the theme */
+body {font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti;}
+
+ul.side { list-style: none; padding: 0; margin: 0;}
+ul.side li { padding:0 0 10px 0;}
+
+.blank { height: 10px; clear: both;}
+
+ul.side_attr { list-style: none; padding: 0; margin:0;}
+ul.side_attr li { padding:0 20px 0 0; display: inline-block;}
+ul.vest_list { list-style: none;}
+ul.vest_list li { float:left; width: 20%;}
+
+.oc { color:#ff2222; font-weight: bold;}
+
+.radio input[type=radio] { margin-left: 0;!important;}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2597136306">
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="c4278e54-1d68-40e0-9593-9edf6d790c40">
+      <driver-ref>d3bef7bf-0758-46e4-82ee-b32a93e65861</driver-ref>
+      <imported>true</imported>
+      <configured-by-url>true</configured-by-url>
+      <remarks>$PROJECT_DIR$/src/main/config/hibernate.cfg.xml</remarks>
+      <jdbc-driver>oracle.jdbc.driver.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://www.annpeter.cn/insurance?characterEncoding=UTF-8</jdbc-url>
+      <explain-plan-config>
+        <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
+      </explain-plan-config>
+    </data-source>
+    <data-source source="LOCAL" name="dataSource" uuid="61a17e06-b73b-42fe-86ef-ee8899569259">
+      <driver-ref>annpeter</driver-ref>
+      <imported>true</imported>
+      <configured-by-url>true</configured-by-url>
+      <remarks>$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/applicationContext.xml</remarks>
+      <jdbc-driver>null</jdbc-driver>
+      <jdbc-url>oracle.jdbc.driver.OracleDriverOracleDriver</jdbc-url>
+      <explain-plan-config>
+        <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
+      </explain-plan-config>
+    </data-source>
+    <data-source source="LOCAL" name="dataSource" uuid="0bbb7213-1edc-48c7-abde-e2dc7e5fb5f4">
+      <driver-ref>annpeter</driver-ref>
+      <imported>true</imported>
+      <configured-by-url>true</configured-by-url>
+      <remarks>$PROJECT_DIR$/src/main/config/applicationContext.xml</remarks>
+      <jdbc-driver>null</jdbc-driver>
+      <jdbc-url>oracle.jdbc.driver.OracleDriverOracleDriver</jdbc-url>
+      <explain-plan-config>
+        <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
+      </explain-plan-config>
+    </data-source>
+  </component>
+</project>
