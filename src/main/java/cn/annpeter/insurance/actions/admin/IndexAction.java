@@ -17,6 +17,10 @@ import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 
+/**
+ * 用于后台首页的展示操作和管理员登陆
+ * Created by annpeter on 3/10/16.
+ */
 @Namespace("/admin/index")
 @ParentPackage("adminDefault")
 @Controller

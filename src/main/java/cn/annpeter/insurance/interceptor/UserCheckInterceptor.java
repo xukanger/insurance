@@ -11,6 +11,12 @@ import cn.annpeter.insurance.entities.User;
 import cn.annpeter.insurance.utils.WebUtils;
 import org.springframework.stereotype.Controller;
 
+
+/**
+ * 用于检测用户授权
+ *
+ * Created by annpeter on 3/11/16.
+ */
 public class UserCheckInterceptor extends AbstractInterceptor{
 
 	private static final long serialVersionUID = -8209905321100447926L;

@@ -21,6 +21,11 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.stereotype.Controller;
 
+
+/**
+ * Created by annpeter on 3/11/16.
+ * 提供单个文件上传接口,上传的文件的文件名必须命名为fileData
+ */
 @Namespace("/admin/upload")
 @ParentPackage("adminDefault")
 @Controller
@@ -56,9 +61,12 @@ public class UploadAction extends BaseFileRequestAction{
 			
 			Map <String, Object> jsonMap = new HashMap<String, Object>();
 			Map <String, Object> result = new HashMap<String, Object>();
-			jsonMap.put("status", "success");
-			
+
+
+            //组合json对象,返回请求端
 			result.put("url", staticPath);
+
+            jsonMap.put("status", "success");
 			jsonMap.put("result", result);
 			
 			jsonObject.putAll(jsonMap);
@@ -83,7 +91,12 @@ public class UploadAction extends BaseFileRequestAction{
 	}
 
 
-
+    /**
+     * 创建一个可用的文件路径,返回一个file对象
+     * path=/static/admin/upload/年(四位数)/月(英文字母缩写大写)/日(两位数)
+     *      /8位时间数(时间为当前时刻和今天早上凌晨的时间差,单位为毫秒)_5位由字母(大小写)和数字组成的随机数
+     * @return
+     */
     private File createDesDir(){
     	String path = ServletActionContext.getServletContext().getRealPath("/static/admin/upload");
 		

@@ -19,7 +19,7 @@
 	<div class="row">
 		<div class="col-md-12">
 
-			<form class="form-horizontal" method="post" action='/admin/user/editProfile' >
+			<form class="form-horizontal" method="post" action='/admin/user/profile' >
                 <input type="hidden" name="user.id" value="<s:property value='#request.User.getId()'/>"/><!-- 隐藏域，用户id -->
 
 			    <div class="form-group">

@@ -29,6 +29,7 @@ public class BaseRequestAction extends ActionSupport implements RequestAware {
         this.request = request;
     }
 
+
     public Map<String, Object> getRequest(){
         return this.request;
     }

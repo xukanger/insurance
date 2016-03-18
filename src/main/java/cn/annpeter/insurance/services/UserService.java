@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+/**
+ *
+ * Created by annpeter on 3/11/16.
+ */
 @Service
 public class UserService extends BaseService{
 

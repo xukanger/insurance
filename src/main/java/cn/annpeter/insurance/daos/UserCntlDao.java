@@ -4,6 +4,10 @@ import org.hibernate.Query;
 import cn.annpeter.insurance.entities.User;
 import org.springframework.stereotype.Repository;
 
+
+/**
+ * Created by annpeter on 3/10/16.
+ */
 @Repository
 public class UserCntlDao extends BaseDao{
 

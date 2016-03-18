@@ -4,6 +4,11 @@ import org.springframework.stereotype.Component;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+
+/**
+ * Created by annpeter on 3/11/16.
+ *
+ */
 @Component
 @XmlRootElement(name="navigater")
 public class Navigater {

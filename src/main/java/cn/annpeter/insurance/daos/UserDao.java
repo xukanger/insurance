@@ -14,6 +14,10 @@ import org.hibernate.metamodel.relational.Sequence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
+/**
+ * Created by annpeter on 3/11/16.
+ */
 @Repository
 public class UserDao extends BaseDao{
 

@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * Created by annpeter on 3/17/16.
+ * 后台对卡单的增删改查操作
  */
 @Namespace("/admin/kadan")
 @ParentPackage("adminDefault")
@@ -49,6 +50,9 @@ public class AdminKaDanAction extends BaseRequestAction {
         return SUCCESS;
     }
 
+    /**
+     * @return
+     */
     @Action(value = "add", results = {
             @Result(name = "success", location = "/views/admin/kadan/add.jsp")
     })
@@ -90,6 +94,12 @@ public class AdminKaDanAction extends BaseRequestAction {
     }
 
 
+    /**
+     * profile用于显示某条卡单的详细信息,并提供修改的接口
+     * 当用户第一次访问时,profile中productKaDan为空,执行显示详情操作
+     * 当用户进行二次操作时,productKaDan被初始化,执行updata
+     * @return
+     */
     @Action(value = "profile", results = {
             @Result(name = "success", location = "/views/admin/kadan/profile.jsp")
     })
@@ -112,10 +122,15 @@ public class AdminKaDanAction extends BaseRequestAction {
         return SUCCESS;
     }
 
+
+    /**
+     * set和get主要是提供给strtus提交表单时初始化productKaDan使用
+     * get方法可有可无,但一定要有set方法
+     * @return
+     */
     public ProductKaDan getProductKaDan() {
         return productKaDan;
     }
-
     public void setProductKaDan(ProductKaDan productKaDan) {
         this.productKaDan = productKaDan;
     }

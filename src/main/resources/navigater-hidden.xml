@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigatersHidden>
+    <navigaterHidden>
+        <curr><!--curr表示当前的Method和Action-->
+            <action>kadan</action>
+            <method>profile</method>
+        </curr>
+        <active><!--active表示下面马上要显示给用户高亮的模块,这个模块必须在navigater.xml中有定义-->
+            <action>kadan</action>
+            <method>add</method>
+        </active>
+    </navigaterHidden>
+    <navigaterHidden>
+        <curr><!--curr表示当前的Method和Action-->
+            <action>kadan</action>
+            <method>profile</method>
+        </curr>
+        <active><!--active表示下面马上要显示给用户高亮的模块,这个模块必须在navigater.xml中有定义-->
+            <action>kadan</action>
+            <method>list</method>
+        </active>
+    </navigaterHidden>
+</navigatersHidden>

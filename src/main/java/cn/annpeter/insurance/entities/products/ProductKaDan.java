@@ -65,7 +65,6 @@ public class ProductKaDan{
     }
 
 
-
     public Integer getId() {
         return id;
     }

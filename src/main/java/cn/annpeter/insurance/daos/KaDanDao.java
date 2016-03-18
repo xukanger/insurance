@@ -20,7 +20,6 @@ public class KaDanDao extends BaseDao {
     }
 
 
-
     public Object getById(int kId){
         Object obj =  getOne(MessageFormat.format("FROM jt_p_kadan WHERE id = {0}", kId));
         if(obj == null) {

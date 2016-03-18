@@ -6,6 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+/**
+ *
+ * Created by annpeter on 3/12/16.
+ */
 @Component
 public class CommonUtils {
 	/**
@@ -68,7 +72,4 @@ public class CommonUtils {
         return retStr;
     }
 
-    public static Date setDateUseStr(String format){
-        return  null;
-    }
 }

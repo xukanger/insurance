@@ -35,7 +35,12 @@ public class KaDanService  extends BaseService{
     }
 
 
-
+    /**
+     * 根据JsonKaDanShow定义的字段,将整个卡单的信息进行删减,提供给Action显示给用户
+     * id 名称 种类 价格 开始时间 失效时间 当前状态 操作(编辑,删除)
+     * @return
+     * @throws ExceptionUtils
+     */
     public List<?> list() throws ExceptionUtils {
 
         List<ProductKaDan>  kaDanList = (List<ProductKaDan> )kaDanDao.list();
@@ -47,19 +52,42 @@ public class KaDanService  extends BaseService{
         return result;
     }
 
+    /**
+     * 获取整个卡单对象
+     * @param kId
+     * @return
+     */
     public Object getById(int kId){
         return (ProductKaDan)kaDanDao.getById(kId);
     }
 
+    /**
+     * 保存新的卡单对象, 返回保存后的对象给Action
+     * @param kaDan
+     * @return
+     */
     public Object save(ProductKaDan kaDan){
         kaDanDao.saveOrUpdate(kaDan);
         return kaDan;
     }
 
+
     public void delete(int id){
         kaDanDao.delete(id);
     }
 
+    /**
+     * 更新对象, 为了防止原来的对象中一些字段被篡改
+     * 在这里根据要修改对象的id,到数据库中获取到原来的对象,
+     * 然后根据该模块的需求,将新对象中的数据赋值给老的对象进行修改
+     *
+     * 在这里无须再次判定数据对象是否为空,
+     * 因为在view中提供要修改的对象和这里的对象是一一对应的
+     * 至于数据的检测,目前放在Action中和客户端完成
+     *
+     * @param newKaDan
+     * @return
+     */
     public Object update(ProductKaDan newKaDan){
         ProductKaDan oldKaDan = (ProductKaDan) getById(newKaDan.getId());
 

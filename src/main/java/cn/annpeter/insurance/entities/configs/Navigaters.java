@@ -7,6 +7,10 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Created by annpeter on 3/11/16.
+ *
+ */
 @Component
 @XmlRootElement(name="navigaters")
 public class Navigaters {

@@ -24,12 +24,22 @@ public class BaseDao {
         return sessionFactory.getCurrentSession();
     }
 
+    /**
+     * 使用hql,获取一个对象集
+     * @param hql
+     * @return
+     */
     public List<?> getList(String hql){
         Query query = getSession().createQuery(hql);
         List<?> list = query.list();
         return list;
     }
 
+    /**
+     * 使用hql语句获取一个对象
+     * @param hql
+     * @return
+     */
     public Object getOne(String hql){
         Object obj = getSession().createQuery(hql).uniqueResult();
         return obj;

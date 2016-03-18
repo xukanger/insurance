@@ -7,6 +7,8 @@ import javax.xml.crypto.Data;
 import java.util.Date;
 
 /**
+ * 产品类, 所有产品继承自该类
+ *
  * Created by annpeter on 3/14/16.
  */
 @Entity(name = "jt_product")
@@ -17,6 +19,8 @@ public class Product{
 
     Integer cate_id;
 
+
+    //@ManyToOne(optional = false)
     Integer supplier_id;
 
     @Column(length = 45)
@@ -33,6 +37,13 @@ public class Product{
 
     Short status;
 
+    public Integer getSupplier_id() {
+        return supplier_id;
+    }
+
+    public void setSupplier_id(Integer supplier_id) {
+        this.supplier_id = supplier_id;
+    }
 
     public Integer getId() {
         return id;
@@ -48,14 +59,6 @@ public class Product{
 
     public void setCate_id(Integer cate_id) {
         this.cate_id = cate_id;
-    }
-
-    public Integer getSupplier_id() {
-        return supplier_id;
-    }
-
-    public void setSupplier_id(Integer supplier_id) {
-        this.supplier_id = supplier_id;
     }
 
     public String getTitle() {
@@ -98,6 +101,14 @@ public class Product{
         this.status = status;
     }
 
+//    public Supplier getSupplier() {
+//        return supplier;
+//    }
+//
+//    public void setSupplier(Supplier supplier) {
+//        this.supplier = supplier;
+//    }
+
     public String getStartDateStr(){
         return CommonUtils.getDateStr(start_date, "yyyy-MM-dd HH:mm:ss");
     }
@@ -105,6 +116,8 @@ public class Product{
     public String getEndDateStr(){
         return CommonUtils.getDateStr(end_date, "yyyy-MM-dd HH:mm:ss");
     }
+
+
 
     public Product() {
     }

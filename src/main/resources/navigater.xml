@@ -25,15 +25,15 @@
 				<title>群组列表</title>
 				<action>group</action>
 				<method>list</method>
-				<img>fa fa-long-arrow-right</img>	
-				<desc>群组管理</desc>				
+				<img>fa fa-long-arrow-right</img>
+				<desc>群组管理</desc>
 			</navigater>
 			<navigater>
 				<title>禁言设置</title>
 				<action>forbid</action>
 				<method>list</method>
 				<img>fa fa-microphone-slash</img>
-				<desc>禁言设置</desc>					
+				<desc>禁言设置</desc>
 			</navigater>
 		</navigaters>
 	</navigater>
@@ -56,7 +56,7 @@
 				<action>kadan</action>
 				<method>add</method>
 				<img>fa fa-tag</img>
-				<desc>话题管理DESC</desc>					
+				<desc>话题管理DESC</desc>
 			</navigater>
 		</navigaters>
 	</navigater>

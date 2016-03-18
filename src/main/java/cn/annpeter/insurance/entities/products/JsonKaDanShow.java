@@ -1,10 +1,14 @@
 package cn.annpeter.insurance.entities.products;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
 /**
+ * 定义了在卡单list的时候需要用到的json对象
  * Created by annpeter on 3/15/16.
  */
+@Component
 public class JsonKaDanShow {
     Integer id;
     String card_name;

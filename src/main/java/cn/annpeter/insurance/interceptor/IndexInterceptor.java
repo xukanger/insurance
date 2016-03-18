@@ -17,6 +17,12 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import cn.annpeter.insurance.entities.configs.Navigater;
 import cn.annpeter.insurance.entities.configs.Navigaters;
 
+
+/**
+ * 用于找出当前的导航高亮栏目
+ *
+ * Created by annpeter on 3/11/16.
+ */
 public class IndexInterceptor extends AbstractInterceptor{
 
 	
@@ -49,13 +55,16 @@ public class IndexInterceptor extends AbstractInterceptor{
 	private void IndexInterceptor_init(){
 		ActionContext actionContext = ActionContext.getContext();
 		request = (HttpServletRequest) actionContext.get(StrutsStatics.HTTP_REQUEST);
-		
+
+
+        //无子节点的html模板
 		formatNoSub = "<li class='%s'>"+
 								"<a	href='"+request.getContextPath()+"%s'>"+
 									"<i class='%s'></i>"+
 									"<span class='title'>%s</span>"+
 								"</a>"+
 							"</li>";
+        //有子节点的html模板
 		formatHaveSub = 	"<li class='%s'>"+
 									"<a	href='"+request.getContextPath()+"%s'>"+
 										"<i class='%s'></i>"+
