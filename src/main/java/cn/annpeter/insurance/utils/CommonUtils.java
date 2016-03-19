@@ -1,5 +1,6 @@
 package cn.annpeter.insurance.utils;
 
+import net.sf.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
@@ -35,7 +36,7 @@ public class CommonUtils {
         }
         return val.toString();
     }
-	
+
 	
 	/**
 	 * 将字符串value，使用c， 扩充称为长度为len的字符串

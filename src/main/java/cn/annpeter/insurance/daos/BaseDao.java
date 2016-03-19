@@ -45,6 +45,11 @@ public class BaseDao {
         return obj;
     }
 
+    public Object getOneUseSQL(String sql){
+        Object obj = getSession().createSQLQuery(sql).uniqueResult();
+        return obj;
+    }
+
     public void saveOrUpdate(Object obj){
         getSession().saveOrUpdate(obj);
     }

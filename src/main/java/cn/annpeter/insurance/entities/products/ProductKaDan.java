@@ -13,6 +13,7 @@ public class ProductKaDan{
     Integer id;
 
     @OneToOne(cascade= CascadeType.ALL)
+    @JoinColumn( unique = true)
     Product product;
 
     @Column(length = 45)

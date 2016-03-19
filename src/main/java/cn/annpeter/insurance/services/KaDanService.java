@@ -1,8 +1,8 @@
 package cn.annpeter.insurance.services;
 
 import cn.annpeter.insurance.daos.KaDanDao;
-import cn.annpeter.insurance.entities.products.JsonKaDanList;
-import cn.annpeter.insurance.entities.products.JsonKaDanProfile;
+import cn.annpeter.insurance.entities.jsonBeans.app.kadan.JsonResKaDanList;
+import cn.annpeter.insurance.entities.jsonBeans.app.kadan.JsonResKaDanProfile;
 import cn.annpeter.insurance.entities.products.ProductKaDan;
 import cn.annpeter.insurance.utils.ExceptionUtils;
 import org.springframework.stereotype.Service;
@@ -38,29 +38,31 @@ public class KaDanService  extends BaseService{
      * @return
      * @throws ExceptionUtils
      */
-    public List<JsonKaDanList> getJsonKaDanList() throws ExceptionUtils {
+    public List<JsonResKaDanList> getJsonKaDanList() throws ExceptionUtils {
 
         List<ProductKaDan>  kaDanList = (List<ProductKaDan> )kaDanDao.list();
 
-        List < JsonKaDanList> result = new ArrayList<>();
+        List <JsonResKaDanList> result = new ArrayList<>();
 
-        result = ((List<JsonKaDanList>) getJsonList(kaDanList, JsonKaDanList.class));
+        result = ((List<JsonResKaDanList>) getJsonList(kaDanList, JsonResKaDanList.class));
 
         return result;
     }
 
-    public JsonKaDanProfile getJsonKaDanProfile(int id){
-        Object obj = getById(id);
-        return (JsonKaDanProfile)getJsonObj(obj, JsonKaDanProfile.class);
+    public JsonResKaDanProfile getJsonKaDanProfile(int product_Id){
+        ProductKaDan productKaDan = kaDanDao.getByProductId(product_Id);
+
+        return (JsonResKaDanProfile)getJsonObj(productKaDan, JsonResKaDanProfile.class);
     }
+
 
     /**
      * 获取整个卡单对象
-     * @param kId
+     * @param id
      * @return
      */
-    public Object getById(int kId){
-        return (ProductKaDan)kaDanDao.getById(kId);
+    public ProductKaDan getById(int id){
+        return (ProductKaDan)kaDanDao.getById(id);
     }
 
     /**
@@ -68,7 +70,7 @@ public class KaDanService  extends BaseService{
      * @param kaDan
      * @return
      */
-    public Object save(ProductKaDan kaDan){
+    public ProductKaDan save(ProductKaDan kaDan){
         kaDanDao.saveOrUpdate(kaDan);
         return kaDan;
     }
@@ -90,7 +92,7 @@ public class KaDanService  extends BaseService{
      * @param newKaDan
      * @return
      */
-    public Object update(ProductKaDan newKaDan){
+    public ProductKaDan update(ProductKaDan newKaDan){
         ProductKaDan oldKaDan = (ProductKaDan) getById(newKaDan.getId());
 
         /**

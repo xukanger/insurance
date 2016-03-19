@@ -108,10 +108,10 @@ public class AdminKaDanAction extends BaseRequestAction {
             String id = getUrlParameter("id");
             if(productKaDan == null){
                 //从数据库获取
-                productKaDan = (ProductKaDan)kaDanService.getById(Integer.valueOf(id));
+                productKaDan = kaDanService.getById(Integer.valueOf(id));
             }else{
                 //修改到数据库
-                productKaDan = (ProductKaDan) kaDanService.update(productKaDan);
+                productKaDan = kaDanService.update(productKaDan);
             }
             //回显至页面
             getRequest().put("ProductKaDan", productKaDan);

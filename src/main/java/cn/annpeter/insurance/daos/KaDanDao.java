@@ -20,15 +20,25 @@ public class KaDanDao extends BaseDao {
     }
 
 
-    public Object getById(int kId){
-        Object obj =  getOne(MessageFormat.format("FROM jt_p_kadan WHERE id = {0}", kId));
+    public Object getById(int id){
+        Object obj =  getOne(MessageFormat.format("FROM jt_p_kadan WHERE id = {0}", id));
         if(obj == null) {
-            throw new NullPointerException("在"+KaDanDao.class.toString()+"中,没有找到id为"+kId+"的对象");
+            throw new NullPointerException("在"+KaDanDao.class.toString()+"中,没有找到id为"+id+"的对象");
         }
         return obj;
     }
 
-    public void delete(int kId){
-        delete(getById(kId));
+    public void delete(int id){
+        delete(getById(id));
     }
+
+    public ProductKaDan getByProductId(int productId){
+        String hql = MessageFormat.format("FROM jt_p_kadan WHERE product_id = {0}", productId);
+        return (ProductKaDan)getOne(hql);
+    }
+
+//    public int getIdByProductId(int productId){
+//        String sql = MessageFormat.format("SELECT id FROM jt_p_kadan WHERE product_id = {0}", productId);
+//        return (Integer)getOneUseSQL(sql);
+//    }
 }
