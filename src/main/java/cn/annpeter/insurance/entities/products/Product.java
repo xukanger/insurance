@@ -19,9 +19,8 @@ public class Product{
 
     Integer cate_id;
 
-
-    //@ManyToOne(optional = false)
-    Integer supplier_id;
+    @ManyToOne(optional = false)
+    Supplier supplier;
 
     @Column(length = 45)
     String title;
@@ -37,12 +36,20 @@ public class Product{
 
     Short status;
 
-    public Integer getSupplier_id() {
-        return supplier_id;
+
+    public Product() {
+        if(supplier == null){
+            supplier = new Supplier();
+        }
     }
 
-    public void setSupplier_id(Integer supplier_id) {
-        this.supplier_id = supplier_id;
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public Integer getId() {
@@ -101,14 +108,6 @@ public class Product{
         this.status = status;
     }
 
-//    public Supplier getSupplier() {
-//        return supplier;
-//    }
-//
-//    public void setSupplier(Supplier supplier) {
-//        this.supplier = supplier;
-//    }
-
     public String getStartDateStr(){
         return CommonUtils.getDateStr(start_date, "yyyy-MM-dd HH:mm:ss");
     }
@@ -117,8 +116,4 @@ public class Product{
         return CommonUtils.getDateStr(end_date, "yyyy-MM-dd HH:mm:ss");
     }
 
-
-
-    public Product() {
-    }
 }

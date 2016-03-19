@@ -110,7 +110,7 @@ public class KaDanService  extends BaseService{
          *修改产品相关的信息
          */
         //修改供应商
-        oldKaDan.getProduct().setSupplier_id(newKaDan.getProduct().getSupplier_id());
+        oldKaDan.getProduct().setSupplier(newKaDan.getProduct().getSupplier());
         //修改开始时间
         oldKaDan.getProduct().setStart_date(newKaDan.getProduct().getStart_date());
         //修改结束时间

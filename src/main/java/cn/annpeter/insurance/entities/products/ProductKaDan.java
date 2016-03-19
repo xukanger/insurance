@@ -56,6 +56,7 @@ public class ProductKaDan{
 //                fetch = FetchType.EAGER)
 //    private Set<ProductKaDanType> productKaDanTypes;
 
+
     public ProductKaDan() {
         //如果这里不初始化,当使用strtus提交表单对ProductKaDan进行初始化时,这里会为空.
         if(product == null){

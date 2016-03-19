@@ -154,7 +154,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2">提供商</label>
                                     <div class="col-md-6">
-                                        <input name="productKaDan.product.supplier_id" value="<s:property value='#request.ProductKaDan.product.supplier_id'/>" type="text" class="form-control">
+                                        <input name="productKaDan.product.supplier.id" value="<s:property value='#request.ProductKaDan.product.supplier.id'/>" type="text" class="form-control">
                                     </div>
                                 </div>
 
