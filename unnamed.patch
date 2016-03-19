@@ -1,0 +1,945 @@
+Index: .idea/artifacts/insurance_war_exploded.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/artifacts/insurance_war_exploded.xml	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ .idea/artifacts/insurance_war_exploded.xml	(revision )
+@@ -1,6 +1,6 @@
+ <component name="ArtifactManager">
+   <artifact type="exploded-war" name="insurance:war exploded">
+-    <output-path>$USER_HOME$/Desktop</output-path>
++    <output-path>$PROJECT_DIR$/src/main/webapp</output-path>
+     <root id="root">
+       <element id="directory" name="WEB-INF">
+         <element id="directory" name="classes">
+@@ -14,14 +14,13 @@
+           <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+           <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
+           <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:4.0.5.Final" />
+-          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" />
+           <element id="library" level="project" name="Maven: org.javassist:javassist:3.18.1-GA" />
+           <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
+           <element id="library" level="project" name="Maven: org.jboss:jandex:1.1.0.Final" />
+           <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:4.3.8.Final" />
+           <element id="library" level="project" name="Maven: org.hibernate:hibernate-ehcache:4.3.8.Final" />
+           <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache-core:2.4.3" />
+-          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" />
++          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" />
+           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.6.RELEASE" />
+           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.1.6.RELEASE" />
+           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
+@@ -89,6 +88,7 @@
+           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.5" />
+           <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
+           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
++          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.3.1" />
+         </element>
+       </element>
+       <element id="directory" name="META-INF">
+\ No newline at end of file
+Index: src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/shoppingcart/JsonResShoppingCart.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/shoppingcart/JsonResShoppingCart.java	(revision )
++++ src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/shoppingcart/JsonResShoppingCart.java	(revision )
+@@ -0,0 +1,35 @@
++package cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart;
++
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * Created by annpeter on 3/19/16.
++ */
++public class JsonResShoppingCart {
++    Integer memver_id;
++
++    List<JsonShoppingCart> jsonShoppingCarts;
++
++    public JsonResShoppingCart(){
++        if(jsonShoppingCarts == null){
++            jsonShoppingCarts = new ArrayList<>();
++        }
++    }
++
++    public Integer getMemver_id() {
++        return memver_id;
++    }
++
++    public void setMemver_id(Integer memver_id) {
++        this.memver_id = memver_id;
++    }
++
++    public List<JsonShoppingCart> getJsonShoppingCarts() {
++        return jsonShoppingCarts;
++    }
++
++    public void setJsonShoppingCarts(List<JsonShoppingCart> jsonShoppingCarts) {
++        this.jsonShoppingCarts = jsonShoppingCarts;
++    }
++}
+Index: src/main/java/cn/annpeter/insurance/entities/products/JsonKaDanList.java
+===================================================================
+--- src/main/java/cn/annpeter/insurance/entities/products/JsonKaDanList.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/kadan/JsonResKaDanList.java	(revision )
+@@ -1,4 +1,4 @@
+-package cn.annpeter.insurance.entities.products;
++package cn.annpeter.insurance.entities.jsonBeans.app.kadan;
+ 
+ import org.springframework.stereotype.Component;
+ 
+@@ -9,15 +9,15 @@
+  * Created by annpeter on 3/15/16.
+  */
+ @Component
+-public class JsonKaDanList {
++public class JsonResKaDanList {
+     Integer id;
+     String name;
+     String description;
+     Integer price;
+     String img_small;
+-    public JsonKaDanList(){}
++    public JsonResKaDanList(){}
+ 
+-    public JsonKaDanList(Integer id, String name, String description, Integer price, String img_small) {
++    public JsonResKaDanList(Integer id, String name, String description, Integer price, String img_small) {
+         this.id = id;
+         this.name = name;
+         this.description = description;
+Index: src/main/java/cn/annpeter/insurance/daos/BaseDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/daos/BaseDao.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/daos/BaseDao.java	(revision )
+@@ -45,6 +45,11 @@
+         return obj;
+     }
+ 
++    public Object getOneUseSQL(String sql){
++        Object obj = getSession().createSQLQuery(sql).uniqueResult();
++        return obj;
++    }
++
+     public void saveOrUpdate(Object obj){
+         getSession().saveOrUpdate(obj);
+     }
+Index: src/main/java/cn/annpeter/insurance/actions/app/ShoppingCartAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/actions/app/ShoppingCartAction.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/actions/app/ShoppingCartAction.java	(revision )
+@@ -1,17 +1,24 @@
+ package cn.annpeter.insurance.actions.app;
+ 
++import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonResShoppingCart;
+ import cn.annpeter.insurance.services.ShoppingCartService;
+ import org.apache.struts2.convention.annotation.Action;
++import org.apache.struts2.convention.annotation.Namespace;
++import org.apache.struts2.convention.annotation.ParentPackage;
+ import org.apache.struts2.convention.annotation.Result;
+ import org.springframework.stereotype.Controller;
+ 
+ import javax.annotation.Resource;
++import java.util.ArrayList;
++import java.util.List;
+ 
+ /**
+  * Created by annpeter on 3/19/16.
+  */
++@Namespace("/app/shoppingcart")
++@ParentPackage("appDefault")
+ @Controller
+-public class ShoppingCartAction extends JsonBaseReqestAction{
++public class ShoppingCartAction extends JsonBaseResponseAction {
+ 
+     @Resource
+     ShoppingCartService shoppingCartService;
+@@ -23,9 +30,25 @@
+             })
+     })
+     public String list(){
++
++        try{
++            int memberId = Integer.valueOf(this.getUrlParameter("id"));
++            List<JsonResShoppingCart> result = new ArrayList<>();
++
++            JsonResShoppingCart jsonResponseShoppingCart = shoppingCartService.list(memberId);
++            result.add(jsonResponseShoppingCart);
++
++            sendSuccessMessage("获取购物车成功", result);
++
+-        return SUCCESS;
++            return SUCCESS;
++        }catch (Exception e){
++            e.printStackTrace();
++            return ERROR;
+-    }
++        }
++    }
+ 
++
++
+     @Action(value = "modify", results = {
+             @Result(name = "success", type = "stream", params = {
+                     "contentType","text/html",
+@@ -33,6 +56,7 @@
+             })
+     })
+     public String modify(){
++
+ 
+ 
+         return SUCCESS;
+Index: src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/shoppingcart/JsonReqShoppingCart.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/shoppingcart/JsonReqShoppingCart.java	(revision )
++++ src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/shoppingcart/JsonReqShoppingCart.java	(revision )
+@@ -0,0 +1,7 @@
++package cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart;
++
++/**
++ * Created by annpeter on 3/19/16.
++ */
++public class JsonReqShoppingCart {
++}
+Index: .idea/libraries/Maven__com_google_code_gson_gson_2_3_1.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/libraries/Maven__com_google_code_gson_gson_2_3_1.xml	(revision )
++++ .idea/libraries/Maven__com_google_code_gson_gson_2_3_1.xml	(revision )
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Maven: com.google.code.gson:gson:2.3.1">
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.3.1/gson-2.3.1.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.3.1/gson-2.3.1-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.3.1/gson-2.3.1-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: src/main/java/cn/annpeter/insurance/entities/products/JsonKaDanProfile.java
+===================================================================
+--- src/main/java/cn/annpeter/insurance/entities/products/JsonKaDanProfile.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/kadan/JsonResKaDanProfile.java	(revision )
+@@ -1,10 +1,10 @@
+-package cn.annpeter.insurance.entities.products;
++package cn.annpeter.insurance.entities.jsonBeans.app.kadan;
+ 
+ import javax.persistence.CascadeType;
+ /**
+  * Created by annpeter on 3/19/16.
+  */
+-public class JsonKaDanProfile {
++public class JsonResKaDanProfile {
+ 
+     Integer id;
+ 
+@@ -32,6 +32,8 @@
+ 
+     String form_detail;
+ 
++    String product__supplier__title;
++
+     public Integer getId() {
+         return id;
+     }
+@@ -134,5 +136,13 @@
+ 
+     public void setForm_detail(String form_detail) {
+         this.form_detail = form_detail;
++    }
++
++    public String getProduct__supplier__title() {
++        return product__supplier__title;
++    }
++
++    public void setProduct__supplier__title(String product__supplier__title) {
++        this.product__supplier__title = product__supplier__title;
+     }
+ }
+Index: src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/shoppingcart/JsonShoppingCart.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/shoppingcart/JsonShoppingCart.java	(revision )
++++ src/main/java/cn/annpeter/insurance/entities/jsonBeans/app/shoppingcart/JsonShoppingCart.java	(revision )
+@@ -0,0 +1,30 @@
++package cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart;
++
++/**
++ * Created by annpeter on 3/19/16.
++ */
++public class JsonShoppingCart {
++    Integer id;   //产品id
++
++    Integer supplier_id;
++
++    String supplier_title;
++
++    String supplier_logo;
++
++    String kadan_name;
++
++    Integer kadan_price;
++
++    Integer card_num;
++
++    public JsonShoppingCart(Integer id, Integer supplier_id, String supplier_title, String supplier_logo, String kadan_name, Integer kadan_price, Integer card_num) {
++        this.id = id;
++        this.supplier_id = supplier_id;
++        this.supplier_title = supplier_title;
++        this.supplier_logo = supplier_logo;
++        this.kadan_name = kadan_name;
++        this.kadan_price = kadan_price;
++        this.card_num = card_num;
++    }
++}
+Index: src/main/java/cn/annpeter/insurance/utils/CommonUtils.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/utils/CommonUtils.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/utils/CommonUtils.java	(revision )
+@@ -1,5 +1,6 @@
+ package cn.annpeter.insurance.utils;
+ 
++import net.sf.json.JSONObject;
+ import org.springframework.stereotype.Component;
+ 
+ import java.text.SimpleDateFormat;
+@@ -35,7 +36,7 @@
+         }
+         return val.toString();
+     }
+-	
++
+ 	
+ 	/**
+ 	 * 将字符串value，使用c， 扩充称为长度为len的字符串
+Index: src/main/java/cn/annpeter/insurance/services/KaDanService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/services/KaDanService.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/services/KaDanService.java	(revision )
+@@ -1,8 +1,8 @@
+ package cn.annpeter.insurance.services;
+ 
+ import cn.annpeter.insurance.daos.KaDanDao;
+-import cn.annpeter.insurance.entities.products.JsonKaDanList;
+-import cn.annpeter.insurance.entities.products.JsonKaDanProfile;
++import cn.annpeter.insurance.entities.jsonBeans.app.kadan.JsonResKaDanList;
++import cn.annpeter.insurance.entities.jsonBeans.app.kadan.JsonResKaDanProfile;
+ import cn.annpeter.insurance.entities.products.ProductKaDan;
+ import cn.annpeter.insurance.utils.ExceptionUtils;
+ import org.springframework.stereotype.Service;
+@@ -38,29 +38,31 @@
+      * @return
+      * @throws ExceptionUtils
+      */
+-    public List<JsonKaDanList> getJsonKaDanList() throws ExceptionUtils {
++    public List<JsonResKaDanList> getJsonKaDanList() throws ExceptionUtils {
+ 
+         List<ProductKaDan>  kaDanList = (List<ProductKaDan> )kaDanDao.list();
+ 
+-        List < JsonKaDanList> result = new ArrayList<>();
++        List <JsonResKaDanList> result = new ArrayList<>();
+ 
+-        result = ((List<JsonKaDanList>) getJsonList(kaDanList, JsonKaDanList.class));
++        result = ((List<JsonResKaDanList>) getJsonList(kaDanList, JsonResKaDanList.class));
+ 
+         return result;
+     }
+ 
+-    public JsonKaDanProfile getJsonKaDanProfile(int id){
+-        Object obj = getById(id);
+-        return (JsonKaDanProfile)getJsonObj(obj, JsonKaDanProfile.class);
++    public JsonResKaDanProfile getJsonKaDanProfile(int product_Id){
++        ProductKaDan productKaDan = kaDanDao.getByProductId(product_Id);
++
++        return (JsonResKaDanProfile)getJsonObj(productKaDan, JsonResKaDanProfile.class);
+     }
+ 
++
+     /**
+      * 获取整个卡单对象
+-     * @param kId
++     * @param id
+      * @return
+      */
+-    public Object getById(int kId){
+-        return (ProductKaDan)kaDanDao.getById(kId);
++    public ProductKaDan getById(int id){
++        return (ProductKaDan)kaDanDao.getById(id);
+     }
+ 
+     /**
+@@ -68,7 +70,7 @@
+      * @param kaDan
+      * @return
+      */
+-    public Object save(ProductKaDan kaDan){
++    public ProductKaDan save(ProductKaDan kaDan){
+         kaDanDao.saveOrUpdate(kaDan);
+         return kaDan;
+     }
+@@ -90,7 +92,7 @@
+      * @param newKaDan
+      * @return
+      */
+-    public Object update(ProductKaDan newKaDan){
++    public ProductKaDan update(ProductKaDan newKaDan){
+         ProductKaDan oldKaDan = (ProductKaDan) getById(newKaDan.getId());
+ 
+         /**
+Index: src/main/java/cn/annpeter/insurance/services/BaseService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/services/BaseService.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/services/BaseService.java	(revision )
+@@ -3,7 +3,6 @@
+ import cn.annpeter.insurance.utils.Constant;
+ import cn.annpeter.insurance.utils.ExceptionUtils;
+ import org.springframework.stereotype.Service;
+-
+ import java.lang.reflect.Field;
+ import java.lang.reflect.Method;
+ import java.util.ArrayList;
+@@ -22,10 +21,28 @@
+             Field[] fields = clazz.getDeclaredFields();
+ 
+             for(int fieldIndex = 0; fieldIndex < fields.length; fieldIndex++){
++
+                 Field field = fields[fieldIndex];
+ 
++                //因为涉及到一个类的属性可能是一个类,在查这个表的附属信息的时候,我们只希望查询附属表的某一条或几条信息,
++                //所以在这里,我规定,当需要查询附属信息的时候,我们JavaBean的命名方式为  字段__二级字段__三级字段
++                //切记,所有表的字段中命名不能含有连续两个下划线
++                String fieldNameStr = field.getName();   //filed
++
++                String fieldNames[] = fieldNameStr.split("__");
++
++
++                Object tempFieldValue = sourObj;   // 用于保存中间变量的值,因为可能有多个__,涉及到多级联的表
++                for(int i =0; i < fieldNames.length; i++){
++                    String fieldName = fieldNames[i];
+-                //从原对象中获取值
++                    //从原对象中获取值
+-                Object fieldValue = getFieldValueByName(field.getName(), sourObj);
++
++                    //如果tempFileValue是一个集合怎么办???
++                    tempFieldValue = getFieldValueByName(fieldName, tempFieldValue);
++                }
++
++                //这是最后的fieldValue的值
++                Object fieldValue = tempFieldValue;
+ 
+                 //将获取到的值赋值给新的对象
+                 setFieldValueByName(field.getName(), destObj, fieldValue);
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pom.xml	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ pom.xml	(revision )
+@@ -35,10 +35,11 @@
+         </dependency>
+         <dependency>
+             <groupId>org.hibernate.javax.persistence</groupId>
+-            <artifactId>hibernate-jpa-2.0-api</artifactId>
+-            <version>1.0.1.Final</version>
++            <artifactId>hibernate-jpa-2.1-api</artifactId>
++            <version>1.0.0.Final</version>
+         </dependency>
+ 
++
+         <!-- spring mvc -->
+         <dependency>
+             <groupId>org.springframework</groupId>
+@@ -157,6 +158,13 @@
+             <groupId>mysql</groupId>
+             <version>5.1.38</version>
+         </dependency>
++
++        <dependency>
++            <groupId>com.google.code.gson</groupId>
++            <artifactId>gson</artifactId>
++            <version>2.3.1</version>
++        </dependency>
++
+         <dependency>
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
+Index: src/main/java/cn/annpeter/insurance/entities/products/ProductKaDan.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/entities/products/ProductKaDan.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/entities/products/ProductKaDan.java	(revision )
+@@ -13,6 +13,7 @@
+     Integer id;
+ 
+     @OneToOne(cascade= CascadeType.ALL)
++    @JoinColumn( unique = true)
+     Product product;
+ 
+     @Column(length = 45)
+Index: src/main/java/cn/annpeter/insurance/daos/ShoppingCartDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/daos/ShoppingCartDao.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/daos/ShoppingCartDao.java	(revision )
+@@ -25,4 +25,5 @@
+     }
+ 
+ 
++
+ }
+Index: src/main/java/cn/annpeter/insurance/daos/ProductDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/daos/ProductDao.java	(revision )
++++ src/main/java/cn/annpeter/insurance/daos/ProductDao.java	(revision )
+@@ -0,0 +1,23 @@
++package cn.annpeter.insurance.daos;
++
++import cn.annpeter.insurance.entities.products.Product;
++import org.hibernate.SessionFactory;
++import org.springframework.stereotype.Repository;
++
++import javax.annotation.Resource;
++import java.text.MessageFormat;
++
++/**
++ * Created by annpeter on 3/19/16.
++ */
++@Repository
++public class ProductDao extends BaseDao{
++    @Resource
++    SessionFactory sessionFactory;
++
++    public Product getById(int id){
++        String hql = MessageFormat.format("FROM jt_product WHERE id = {0}", id);
++
++        return  (Product) getOne(hql);
++    }
++}
+Index: .idea/libraries/Maven__org_hibernate_javax_persistence_hibernate_jpa_2_0_api_1_0_1_Final.xml
+===================================================================
+--- .idea/libraries/Maven__org_hibernate_javax_persistence_hibernate_jpa_2_0_api_1_0_1_Final.xml	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ .idea/libraries/Maven__org_hibernate_javax_persistence_hibernate_jpa_2_0_api_1_0_1_Final.xml	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final">
+-    <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: src/main/java/cn/annpeter/insurance/services/ShoppingCartService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/services/ShoppingCartService.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/services/ShoppingCartService.java	(revision )
+@@ -1,9 +1,17 @@
+ package cn.annpeter.insurance.services;
+ 
++import cn.annpeter.insurance.daos.KaDanDao;
++import cn.annpeter.insurance.daos.ProductDao;
+ import cn.annpeter.insurance.daos.ShoppingCartDao;
++import cn.annpeter.insurance.entities.ShoppingCart;
++import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonResShoppingCart;
++import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonShoppingCart;
++import cn.annpeter.insurance.entities.products.ProductKaDan;
++import cn.annpeter.insurance.entities.products.Supplier;
+ import org.springframework.stereotype.Service;
+ 
+ import javax.annotation.Resource;
++import java.util.Iterator;
+ import java.util.List;
+ 
+ /**
+@@ -14,9 +22,35 @@
+ 
+     @Resource
+     ShoppingCartDao shoppingCartDao;
++    @Resource
++    ProductDao productDao;
++    @Resource
++    KaDanDao kaDanDao;
+ 
+-    public List<?> list(){
+-        return null;
++    public JsonResShoppingCart list(int member_id){
++
++        JsonResShoppingCart jsonResponseShoppingCart = new JsonResShoppingCart();
++
++        jsonResponseShoppingCart.setMemver_id(member_id);
++
++        List<ShoppingCart> shoppingCartList = (List<ShoppingCart>)shoppingCartDao.list(member_id);
++
++        Iterator<ShoppingCart> it = shoppingCartList.iterator();
++
++        while (it.hasNext()){
++            ShoppingCart shoppingCart = it.next();
++
++            int productId = shoppingCart.getProduct_id();
++            ProductKaDan productKaDan = kaDanDao.getByProductId(productId);
++            Supplier supplier = productKaDan.getProduct().getSupplier();
++
++           JsonShoppingCart jsonShoppingCart =  new JsonShoppingCart(productId, supplier.getId(), supplier.getTitle(),
++                   supplier.getLogo(), productKaDan.getName(), productKaDan.getPrice(), shoppingCart.getNum());
++
++            jsonResponseShoppingCart.getJsonShoppingCarts().add(jsonShoppingCart);
++        }
++
++        return  jsonResponseShoppingCart;
+     }
+ 
+ }
+Index: src/main/java/cn/annpeter/insurance/actions/app/DemoAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/actions/app/DemoAction.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/actions/app/DemoAction.java	(revision )
+@@ -1,7 +1,6 @@
+ package cn.annpeter.insurance.actions.app;
+ 
+ import cn.annpeter.insurance.entities.DemoBean;
+-import cn.annpeter.insurance.entities.products.JsonKaDanProfile;
+ import org.apache.struts2.convention.annotation.Action;
+ import org.apache.struts2.convention.annotation.Namespace;
+ import org.apache.struts2.convention.annotation.ParentPackage;
+@@ -16,7 +15,7 @@
+ @Namespace("/app/demo")
+ @ParentPackage("appDefault")
+ @Controller
+-public class DemoAction extends JsonBaseReqestAction{
++public class DemoAction extends JsonBaseResponseAction {
+ 
+     DemoBean demoBean;
+ 
+Index: src/main/java/cn/annpeter/insurance/daos/KaDanDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/daos/KaDanDao.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/daos/KaDanDao.java	(revision )
+@@ -20,15 +20,25 @@
+     }
+ 
+ 
+-    public Object getById(int kId){
+-        Object obj =  getOne(MessageFormat.format("FROM jt_p_kadan WHERE id = {0}", kId));
++    public Object getById(int id){
++        Object obj =  getOne(MessageFormat.format("FROM jt_p_kadan WHERE id = {0}", id));
+         if(obj == null) {
+-            throw new NullPointerException("在"+KaDanDao.class.toString()+"中,没有找到id为"+kId+"的对象");
++            throw new NullPointerException("在"+KaDanDao.class.toString()+"中,没有找到id为"+id+"的对象");
+         }
+         return obj;
+     }
+ 
+-    public void delete(int kId){
+-        delete(getById(kId));
++    public void delete(int id){
++        delete(getById(id));
+     }
++
++    public ProductKaDan getByProductId(int productId){
++        String hql = MessageFormat.format("FROM jt_p_kadan WHERE product_id = {0}", productId);
++        return (ProductKaDan)getOne(hql);
++    }
++
++//    public int getIdByProductId(int productId){
++//        String sql = MessageFormat.format("SELECT id FROM jt_p_kadan WHERE product_id = {0}", productId);
++//        return (Integer)getOneUseSQL(sql);
++//    }
+ }
+Index: insurance.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- insurance.iml	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ insurance.iml	(revision )
+@@ -59,14 +59,13 @@
+     <orderEntry type="library" name="Maven: dom4j:dom4j:1.6.1" level="project" />
+     <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.0.b2" level="project" />
+     <orderEntry type="library" name="Maven: org.hibernate.common:hibernate-commons-annotations:4.0.5.Final" level="project" />
+-    <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" level="project" />
+     <orderEntry type="library" name="Maven: org.javassist:javassist:3.18.1-GA" level="project" />
+     <orderEntry type="library" name="Maven: antlr:antlr:2.7.7" level="project" />
+     <orderEntry type="library" name="Maven: org.jboss:jandex:1.1.0.Final" level="project" />
+     <orderEntry type="library" name="Maven: org.hibernate:hibernate-entitymanager:4.3.8.Final" level="project" />
+     <orderEntry type="library" name="Maven: org.hibernate:hibernate-ehcache:4.3.8.Final" level="project" />
+     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache-core:2.4.3" level="project" />
+-    <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" level="project" />
++    <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" level="project" />
+     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.1.6.RELEASE" level="project" />
+     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.1.6.RELEASE" level="project" />
+     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
+@@ -134,6 +133,7 @@
+     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.5" level="project" />
+     <orderEntry type="library" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" level="project" />
+     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.38" level="project" />
++    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.3.1" level="project" />
+     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.11" level="project" />
+     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+   </component>
+\ No newline at end of file
+Index: src/main/java/cn/annpeter/insurance/actions/admin/AdminKaDanAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/actions/admin/AdminKaDanAction.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/actions/admin/AdminKaDanAction.java	(revision )
+@@ -108,10 +108,10 @@
+             String id = getUrlParameter("id");
+             if(productKaDan == null){
+                 //从数据库获取
+-                productKaDan = (ProductKaDan)kaDanService.getById(Integer.valueOf(id));
++                productKaDan = kaDanService.getById(Integer.valueOf(id));
+             }else{
+                 //修改到数据库
+-                productKaDan = (ProductKaDan) kaDanService.update(productKaDan);
++                productKaDan = kaDanService.update(productKaDan);
+             }
+             //回显至页面
+             getRequest().put("ProductKaDan", productKaDan);
+Index: src/main/java/cn/annpeter/insurance/actions/admin/UserAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/actions/admin/UserAction.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/actions/admin/UserAction.java	(revision )
+@@ -1,6 +1,6 @@
+ package cn.annpeter.insurance.actions.admin;
+ 
+-import cn.annpeter.insurance.actions.app.JsonBaseReqestAction;
++import cn.annpeter.insurance.actions.app.JsonBaseResponseAction;
+ import org.apache.struts2.ServletActionContext;
+ import cn.annpeter.insurance.entities.User;
+ import cn.annpeter.insurance.services.UserService;
+@@ -21,7 +21,7 @@
+ @Namespace("/admin/user")
+ @ParentPackage("adminDefault")
+ @Controller
+-public class UserAction extends JsonBaseReqestAction {
++public class UserAction extends JsonBaseResponseAction {
+ 
+ 	private static final long serialVersionUID = 3097879606840479844L;
+ 
+Index: src/main/java/cn/annpeter/insurance/actions/app/JsonBaseReqestAction.java
+===================================================================
+--- src/main/java/cn/annpeter/insurance/actions/app/JsonBaseReqestAction.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/actions/app/JsonBaseResponseAction.java	(revision )
+@@ -5,11 +5,8 @@
+  */
+ 
+ import cn.annpeter.insurance.actions.BaseRequestAction;
+-import cn.annpeter.insurance.entities.products.ProductKaDan;
+-import net.sf.json.JSONObject;
+-import net.sf.json.JsonConfig;
+-import net.sf.json.util.CycleDetectionStrategy;
+-import org.apache.struts2.ServletActionContext;
++import cn.annpeter.insurance.utils.Constant;
++import com.google.gson.Gson;
+ import org.springframework.stereotype.Controller;
+ 
+ import java.io.ByteArrayInputStream;
+@@ -22,14 +19,14 @@
+  * Created by annpeter on 3/15/16.
+  */
+ @Controller
+-public class JsonBaseReqestAction extends BaseRequestAction {
++public class JsonBaseResponseAction extends BaseRequestAction {
+ 
+     private InputStream inputStream;
+-    private JSONObject jsonObject;
++    private Gson gson;
+     private Map<String, Object> jsonMap;
+ 
+-    public JsonBaseReqestAction(){
+-        jsonObject = new JSONObject();
++    public JsonBaseResponseAction(){
++        gson = new Gson();
+         jsonMap = new HashMap<String, Object>();
+     }
+ 
+@@ -53,35 +50,46 @@
+         jsonMap.put("status", 1);
+         jsonMap.put("message", message);
+         jsonMap.put("result", result);
+-        jsonObject.putAll(jsonMap);
+ 
+-        inputStream = new ByteArrayInputStream(jsonObject.toString().getBytes("UTF-8"));
++        if(Constant.DEBUG){
++            System.out.println(gson.toJson(jsonMap));
+-    }
++        }
+ 
+-    public void sendSuccessMessageCycleDetection(String message, Object result) throws UnsupportedEncodingException {
+-
+-        JsonConfig jsonConfig = new JsonConfig();
+-        jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+-
+-        JSONObject resultJson = JSONObject.fromObject(result, jsonConfig);
+-
+-        ProductKaDan obj = (ProductKaDan) JSONObject.toBean(resultJson, ProductKaDan.class);
+-
+-        jsonMap.put("status", 1);
+-        jsonMap.put("message", message);
+-        jsonMap.put("result", obj);
+-        jsonObject.putAll(jsonMap);
+-
+-        inputStream = new ByteArrayInputStream(jsonObject.toString().getBytes("UTF-8"));
++        inputStream = new ByteArrayInputStream(gson.toJson(jsonMap).getBytes("UTF-8"));
+     }
+ 
++//    /**
++//     * 避免在result中的属性不是基本对象时,发生无限迭代
++//     * @param message
++//     * @param result
++//     * @param clazz
++//     * @throws UnsupportedEncodingException
++//     */
++//    public void sendSuccessMessageCycleDetection(String message, Object result, Class clazz) throws UnsupportedEncodingException {
++//
++//        JsonConfig jsonConfig = new JsonConfig();
++//        jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
++//
++//        JSONObject resultJson = JSONObject.fromObject(result, jsonConfig);
++//
++//        //Object obj = result
++//        //需要将这里的ProductKaDan换为clazz,因为现在尚未用到,暂不实现
++//        ProductKaDan obj = (ProductKaDan) JSONObject.toBean(resultJson, ProductKaDan.class);
++//
++//        jsonMap.put("status", 1);
++//        jsonMap.put("message", message);
++//        jsonMap.put("result", obj);
++//        jsonObject.putAll(jsonMap);
++//
++//        inputStream = new ByteArrayInputStream(jsonObject.toString().getBytes("UTF-8"));
++//    }
+ 
+ 
++
+     public void sendFailMessage(String message, String code) throws UnsupportedEncodingException {
+         jsonMap.put("status", 0);
+         jsonMap.put("message", message);
+         jsonMap.put("code", code);
+-        jsonObject.putAll(jsonMap);
+-        inputStream = new ByteArrayInputStream(jsonObject.toString().getBytes("UTF-8"));
++        inputStream = new ByteArrayInputStream(gson.toJson(jsonMap).getBytes("UTF-8"));
+     }
+ }
+\ No newline at end of file
+Index: src/main/java/cn/annpeter/insurance/actions/app/KaDanAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cn/annpeter/insurance/actions/app/KaDanAction.java	(revision f392c0605a4d100474b33fa1f984e21b5674d239)
++++ src/main/java/cn/annpeter/insurance/actions/app/KaDanAction.java	(revision )
+@@ -1,8 +1,7 @@
+ package cn.annpeter.insurance.actions.app;
+ 
+-import cn.annpeter.insurance.entities.products.JsonKaDanList;
+-import cn.annpeter.insurance.entities.products.JsonKaDanProfile;
+-import cn.annpeter.insurance.entities.products.ProductKaDan;
++import cn.annpeter.insurance.entities.jsonBeans.app.kadan.JsonResKaDanList;
++import cn.annpeter.insurance.entities.jsonBeans.app.kadan.JsonResKaDanProfile;
+ import cn.annpeter.insurance.services.KaDanService;
+ import cn.annpeter.insurance.utils.ExceptionUtils;
+ import org.apache.struts2.convention.annotation.Action;
+@@ -12,6 +11,7 @@
+ import org.springframework.stereotype.Controller;
+ import javax.annotation.Resource;
+ import java.io.UnsupportedEncodingException;
++import java.util.ArrayList;
+ import java.util.List;
+ 
+ /**
+@@ -22,7 +22,7 @@
+ @Namespace("/app/kadan")
+ @ParentPackage("appDefault")
+ @Controller
+-public class KaDanAction extends JsonBaseReqestAction {
++public class KaDanAction extends JsonBaseResponseAction {
+ 
+     @Resource
+     private KaDanService kaDanService;
+@@ -38,11 +38,17 @@
+ 
+         try {
+             //当id有误时,返回错误信息
+-            String kId = this.getUrlParameter("id");
++            int product_Id = Integer.valueOf(this.getUrlParameter("id"));
+ 
+-            JsonKaDanProfile productKaDan = (JsonKaDanProfile)kaDanService.getJsonKaDanProfile(Integer.valueOf(kId));
++            //因为客户端要求result必须为一个数组, 但有时我们取出来的本来就是一个list
++            //因此,在这里虽然只有一个对象,还是需要把它装载在list中,保持格式一致
++            List <JsonResKaDanProfile> result = new ArrayList<>();
+ 
+-            sendSuccessMessageCycleDetection("请求卡单成功", productKaDan);
++            JsonResKaDanProfile productKaDan = kaDanService.getJsonKaDanProfile(product_Id);
++
++            result.add(productKaDan);
++
++            sendSuccessMessage("请求卡单成功", productKaDan);
+         }catch (Exception e){
+             sendFailMessage("请求卡单失败", "0X0000");
+         }
+@@ -60,7 +66,7 @@
+     public String list() throws UnsupportedEncodingException {
+         try {
+ 
+-            List <JsonKaDanList> result = kaDanService.getJsonKaDanList();
++            List <JsonResKaDanList> result = kaDanService.getJsonKaDanList();
+ 
+             sendSuccessMessage("请求卡单列表成功", result);
+         } catch (ExceptionUtils exceptionUtils) {
