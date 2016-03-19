@@ -45,8 +45,8 @@
                                     <img src="<s:property value='#request.ProductKaDan.img_big'/>" style="display:none;"  alt="" id="cardImgBig" height="100">
                                     <input type="hidden" id="cardImgBigUrl" name="productKaDan.img_big" value="<s:property value='#request.ProductKaDan.img_big'/>">
                                     <script type="text/javascript">
-                                        function uploadsingle(file, response) {
-                                            var url = response.result.url;
+                                        function uploadsingleZEOA(file, data) {
+                                            var url = data.result[0].url;
                                             $('#cardImgBigUrl').val(url);
                                             $('#cardImgBig').attr('src', url).show();
                                         }
@@ -77,15 +77,15 @@
                                                     up.start();
                                                 },
 
-                                                FileUploaded: function(up, file, info) {
-                                                    info = $.parseJSON(info.response);
-                                                    if(info!=undefined){
-                                                        if(info.error!=undefined){
-                                                            alert("["+info.error.code+"]"+info.error.message)
+                                                FileUploaded: function(up, file, data) {
+                                                    data = $.parseJSON(data.response);
+                                                    if(data!=undefined){
+                                                        if(data.status==undefined||data.status==0){
+                                                            alert("["+data.code+"]"+data.message)
                                                         }else{
-                                                            var status = info.status;
-                                                            if (status != undefined && status =='success') {
-                                                                uploadsingle(file, info);
+                                                            var status = data.status;
+                                                            if (status != undefined && status == 1) {
+                                                                uploadsingleAPEF(file, data);
                                                             }
                                                         }
                                                     }
@@ -115,87 +115,87 @@
                             </div>
 
 
-                            <div class="form-body">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">小简介图(200*200)</label>
+                                <div class="col-md-6">
 
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">小简介图(200*200)</label>
-                                    <div class="col-md-6">
-
-                                        <!--single-->
-                                        <div class="plupload_container" style="position: relative;">
-                                            <div id="APEF" class="btn btn-info" style="position: relative; z-index: 1;">  <i class="fa fa-plus"></i> 上传文件 <span class="info"></span></div>
-                                        </div>
-                                        <img src="<s:property value='#request.ProductKaDan.img_big'/>" style="display:none;"  alt="" id="cardImgSmall" height="100">
-                                        <input type="hidden" id="cardImgSmallUrl" name="productKaDan.img_small" value="<s:property value='#request.ProductKaDan.img_small'/>">
-                                        <script type="text/javascript">
-                                            function uploadsingle(file, response) {
-                                                var url = response.result.url;
-                                                $('#cardImgSmallUrl').val(url);
-                                                $('#cardImgSmall').attr('src', url).show();
-                                            }
-                                        </script>
+                                    <!--single-->
+                                    <div class="plupload_container" style="position: relative;">
+                                        <div id="APEF" class="btn btn-info" style="position: relative; z-index: 1;">  <i class="fa fa-plus"></i> 上传文件 <span class="info"></span></div>
                                     </div>
+                                    <img src="<s:property value='#request.ProductKaDan.img_small'/>" style="display:none;"  alt="" id="cardImgSmall" height="100">
+                                    <input type="hidden" id="cardImgSmallUrl" name="productKaDan.img_small" value="<s:property value='#request.ProductKaDan.img_small'/>">
                                     <script type="text/javascript">
-                                        jQuery(function($) {
-
-                                            var APEF = new plupload.Uploader({
-                                                runtimes: 'html5,flash,silverlight,html4',
-                                                browse_button: 'APEF',
-                                                url: '/admin/upload/index',
-                                                flash_swf_url: '/static/admin/public/swf/Moxie.swf',
-                                                silverlight_xap_url: '/static/admin/public/swf/Moxie.swf',
-                                                multipart:true,
-                                                filters: {
-                                                    max_file_size: '512000',
-                                                    mime_types: [
-                                                        {title: "Files", extensions: "jpg,jpeg,png,bmp,gif"}
-                                                    ],
-                                                    prevent_duplicates:false
-                                                },
-                                                file_data_name:'fileData',
-                                                multi_selection: false,
-
-                                                init: {
-                                                    FilesAdded: function (up, files) {
-                                                        up.start();
-                                                    },
-
-                                                    FileUploaded: function(up, file, info) {
-                                                        info = $.parseJSON(info.response);
-                                                        if(info!=undefined){
-                                                            if(info.error!=undefined){
-                                                                alert("["+info.error.code+"]"+info.error.message)
-                                                            }else{
-                                                                var status = info.status;
-                                                                if (status != undefined && status =='success') {
-                                                                    uploadsingle(file, info);
-                                                                }
-                                                            }
-                                                        }
-                                                    },
-
-                                                    UploadProgress: function (up, file) {
-                                                        var $percent = $("#ZEOA span.info");
-                                                        if(file.percent==100){
-                                                            $percent.text("");
-                                                        }else{
-                                                            $percent.text(file.percent + '%');
-                                                        }
-                                                    },
-
-                                                    Error: function (up, err) {
-                                                        alert("[" + err.code + "]" + err.message)
-                                                    }
-                                                }
-                                            });
-
-                                            APEF.init();
-                                            if($('#cardImgBig').attr('src')){
-                                                $('#cardImgBig').show();
-                                            }
-                                        });
+                                        function uploadsingleAPEF(file, data) {
+                                            var url = data.result[0].url;
+                                            $('#cardImgSmallUrl').val(url);
+                                            $('#cardImgSmall').attr('src', url).show();
+                                        }
                                     </script>
                                 </div>
+                                <script type="text/javascript">
+                                    jQuery(function($) {
+
+                                        var APEF = new plupload.Uploader({
+                                            runtimes: 'html5,flash,silverlight,html4',
+                                            browse_button: 'APEF',
+                                            url: '/admin/upload/index',
+                                            flash_swf_url: '/static/admin/public/swf/Moxie.swf',
+                                            silverlight_xap_url: '/static/admin/public/swf/Moxie.swf',
+                                            multipart:true,
+                                            filters: {
+                                                max_file_size: '512000',
+                                                mime_types: [
+                                                    {title: "Files", extensions: "jpg,jpeg,png,bmp,gif"}
+                                                ],
+                                                prevent_duplicates:false
+                                            },
+                                            file_data_name:'fileData',
+                                            multi_selection: false,
+
+                                            init: {
+                                                FilesAdded: function (up, files) {
+                                                    up.start();
+                                                },
+
+                                                FileUploaded: function(up, file, data) {
+                                                    data = $.parseJSON(data.response);
+                                                    if(data!=undefined){
+                                                        if(data.status==undefined||data.status==0){
+                                                            alert("["+data.code+"]"+data.message)
+                                                        }else{
+                                                            var status = data.status;
+                                                            if (status != undefined && status == 1) {
+                                                                uploadsingleAPEF(file, data);
+                                                            }
+                                                        }
+                                                    }
+                                                },
+
+                                                UploadProgress: function (up, file) {
+                                                    var $percent = $("#APEF span.info");
+                                                    if(file.percent==100){
+                                                        $percent.text("");
+                                                    }else{
+                                                        $percent.text(file.percent + '%');
+                                                    }
+                                                },
+
+                                                Error: function (up, err) {
+                                                    alert("[" + err.code + "]" + err.message)
+                                                }
+                                            }
+                                        });
+
+                                        APEF.init();
+                                        if($('#cardImgSmall').attr('src')){
+                                            $('#cardImgSmall').show();
+                                        }
+                                    });
+                                </script>
+                            </div>
+
+
 
 
                             <div class="form-group">

@@ -7,9 +7,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import cn.annpeter.insurance.utils.WebUtils;
 import org.apache.commons.io.FileUtils;
@@ -47,8 +45,6 @@ public class UploadAction extends BaseFileRequestAction{
     public String index() throws UnsupportedEncodingException   {
 		
     	File destFile = null;
-
-		JSONObject jsonObject = new JSONObject();
 		
 		try {
 			
@@ -56,38 +52,28 @@ public class UploadAction extends BaseFileRequestAction{
 			FileUtils.copyFile(getFileData(), destFile);
 			
 			String realPath = destFile.getPath();
-			String staticPath = realPath.substring(realPath.lastIndexOf("static"), realPath.length());//获得相对于static目录的路径
+			String staticPath = realPath.substring(realPath.lastIndexOf("/static"), realPath.length());//获得相对于static目录的路径
             //String urlFullPath = WebUtils.getBasePath()+staticPath;
 
             //在strtus中使用URLEncode不能访问,后期加入Nginx,可以进行修改
 			//String url = URLEncoder.encode(staticPath, "UTF-8");
-			
-			Map <String, Object> jsonMap = new HashMap<String, Object>();
+
 			Map <String, Object> result = new HashMap<String, Object>();
 
 
             //组合json对象,返回请求端
 			result.put("url", staticPath);
 
-            jsonMap.put("status", "success");
-			jsonMap.put("result", result);
-			
-			jsonObject.putAll(jsonMap);
+            List<Map<String, Object>> resultArr = new ArrayList<>();
+            resultArr.add(result);
 
-			setInputStream(new ByteArrayInputStream(jsonObject.toString().getBytes("UTF-8")));
+            sendSuccessMessage("发送文件成功", resultArr);
 		} catch (IOException e) {
 			e.printStackTrace();
 			
-			HashMap<String, Object> error = new HashMap <String, Object>();
-			error.put("code", "0x0000");
-			error.put("message", "Upload fail!");
-			
-			Map <String, Object> jsonMap = new HashMap <String, Object>();
-			jsonMap.put("error", error);
-			
-			jsonObject.putAll(jsonMap);
+			HashMap<String, Object> result = new HashMap <String, Object>();;
 
-			setInputStream(new ByteArrayInputStream(jsonObject.toString().getBytes("UTF-8")));
+            sendFailMessage("发送文件失败", "0x0000");
 		}
 				
 		return SUCCESS;

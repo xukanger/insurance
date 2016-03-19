@@ -1,5 +1,6 @@
 package cn.annpeter.insurance.actions.app;
 
+import cn.annpeter.insurance.actions.JsonBaseResponseAction;
 import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonResShoppingCart;
 import cn.annpeter.insurance.services.ShoppingCartService;
 import org.apache.struts2.convention.annotation.Action;

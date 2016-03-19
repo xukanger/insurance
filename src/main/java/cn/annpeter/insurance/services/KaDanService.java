@@ -101,6 +101,8 @@ public class KaDanService  extends BaseService{
 
         //修改简介图
         oldKaDan.setImg_big(newKaDan.getImg_big());
+        //修改小简介图
+        oldKaDan.setImg_small(newKaDan.getImg_small());
         //修改产品名称
         oldKaDan.setName(newKaDan.getName());
         //修改产品描述

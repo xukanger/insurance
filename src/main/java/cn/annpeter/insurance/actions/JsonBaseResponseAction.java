@@ -1,4 +1,4 @@
-package cn.annpeter.insurance.actions.app;
+package cn.annpeter.insurance.actions;
 
 /**
  * Created by annpeter on 3/17/16.

@@ -1,6 +1,6 @@
 package cn.annpeter.insurance.actions.admin;
 
-import cn.annpeter.insurance.actions.app.JsonBaseResponseAction;
+import cn.annpeter.insurance.actions.JsonBaseResponseAction;
 import org.apache.struts2.ServletActionContext;
 import cn.annpeter.insurance.entities.User;
 import cn.annpeter.insurance.services.UserService;

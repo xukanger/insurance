@@ -1,5 +1,6 @@
 package cn.annpeter.insurance.actions.app;
 
+import cn.annpeter.insurance.actions.JsonBaseResponseAction;
 import cn.annpeter.insurance.entities.jsonBeans.app.kadan.JsonResKaDanList;
 import cn.annpeter.insurance.entities.jsonBeans.app.kadan.JsonResKaDanProfile;
 import cn.annpeter.insurance.services.KaDanService;
