@@ -29,7 +29,8 @@
 ###请求查看某条卡单具体信息(/app/kadan/index?id=productID)
 * 请求携带productID(产品id，所有产品共享的id字段)
 * 返回json样例
-	```json
+
+	```
 	{
 	  "result": {
 		"id": 1,	<!--这里的id是产品的id-->

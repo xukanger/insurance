@@ -3,7 +3,8 @@
 ###请求查看当前用户的购物车(/app/shoppingcart/list?id=memberID)
 * 请求携带信息memberID(用户id，用户即保险员)
 * 返回json样例
-	```json
+
+	```
 	{
 	  "result": [
 		{
