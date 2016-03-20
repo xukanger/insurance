@@ -47,9 +47,10 @@ public class JsonBaseResAction extends BaseRequestAction {
      */
     public void sendSuccessMessage(String message, Object result) throws UnsupportedEncodingException {
 
-        jsonMap.put("status", 1);
-        jsonMap.put("message", message);
+
         jsonMap.put("result", result);
+        jsonMap.put("message", message);
+        jsonMap.put("status", 1);
 
         if(Constant.DEBUG){
             System.out.println(gson.toJson(jsonMap));
@@ -87,9 +88,9 @@ public class JsonBaseResAction extends BaseRequestAction {
 
 
     public void sendFailMessage(String message, String code) throws UnsupportedEncodingException {
-        jsonMap.put("status", 0);
         jsonMap.put("message", message);
         jsonMap.put("code", code);
+        jsonMap.put("status", 0);
         inputStream = new ByteArrayInputStream(gson.toJson(jsonMap).getBytes("UTF-8"));
     }
 }

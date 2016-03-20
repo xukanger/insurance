@@ -85,7 +85,7 @@
                                                         }else{
                                                             var status = data.status;
                                                             if (status != undefined && status == 1) {
-                                                                uploadsingleAPEF(file, data);
+                                                                uploadsingleZEOA(file, data);
                                                             }
                                                         }
                                                     }
