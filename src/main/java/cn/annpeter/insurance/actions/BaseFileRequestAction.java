@@ -3,7 +3,6 @@ package cn.annpeter.insurance.actions;
 import org.springframework.stereotype.Controller;
 
 import java.io.File;
-import java.io.InputStream;
 
 /**
  * Created by annpeter on 3/15/16.
@@ -12,12 +11,12 @@ import java.io.InputStream;
  * 注意:所有上传的文件名称都要命名为fileData
  */
 @Controller
-public class BaseFileRequestAction extends JsonBaseResponseAction {
+public class BaseFileRequestAction extends JsonBaseResAction {
 
     private File fileData;              //所有上传的文件都要命名为fileData
     private String fileDataFileName;
     private String fileDataContentType;
-    private String message = "0"; // 0格式错误 1成功(文件路径)  2失败
+    private String message = "0";       // 0格式错误 1成功(文件路径)  2失败
     private String filePath;
 
 

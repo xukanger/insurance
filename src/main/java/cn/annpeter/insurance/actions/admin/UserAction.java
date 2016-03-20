@@ -1,6 +1,6 @@
 package cn.annpeter.insurance.actions.admin;
 
-import cn.annpeter.insurance.actions.JsonBaseResponseAction;
+import cn.annpeter.insurance.actions.JsonBaseResAction;
 import org.apache.struts2.ServletActionContext;
 import cn.annpeter.insurance.entities.User;
 import cn.annpeter.insurance.services.UserService;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @Namespace("/admin/user")
 @ParentPackage("adminDefault")
 @Controller
-public class UserAction extends JsonBaseResponseAction {
+public class UserAction extends JsonBaseResAction {
 
 	private static final long serialVersionUID = 3097879606840479844L;
 

@@ -1,8 +1,11 @@
 package cn.annpeter.insurance.actions.app;
 
-import cn.annpeter.insurance.actions.JsonBaseResponseAction;
-import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonResShoppingCart;
+import cn.annpeter.insurance.actions.JsonBaseReqActionWithList;
+import cn.annpeter.insurance.actions.JsonBaseResAction;
+import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonReqShoppingCartModify;
+import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonResShoppingCartList;
 import cn.annpeter.insurance.services.ShoppingCartService;
+import com.google.gson.Gson;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -19,7 +22,7 @@ import java.util.List;
 @Namespace("/app/shoppingcart")
 @ParentPackage("appDefault")
 @Controller
-public class ShoppingCartAction extends JsonBaseResponseAction {
+public class ShoppingCartAction extends JsonBaseReqActionWithList {
 
     @Resource
     ShoppingCartService shoppingCartService;
@@ -34,9 +37,9 @@ public class ShoppingCartAction extends JsonBaseResponseAction {
 
         try{
             int memberId = Integer.valueOf(this.getUrlParameter("id"));
-            List<JsonResShoppingCart> result = new ArrayList<>();
+            List<JsonResShoppingCartList> result = new ArrayList<>();
 
-            JsonResShoppingCart jsonResponseShoppingCart = shoppingCartService.list(memberId);
+            JsonResShoppingCartList jsonResponseShoppingCart = shoppingCartService.list(memberId);
             result.add(jsonResponseShoppingCart);
 
             sendSuccessMessage("获取购物车成功", result);
@@ -59,6 +62,17 @@ public class ShoppingCartAction extends JsonBaseResponseAction {
     public String modify(){
 
 
+        try{
+
+            Gson gson = new Gson();
+            JsonReqShoppingCartModify jsonReqShoppingCartModify =  gson.fromJson(getReqJsonStr(), JsonReqShoppingCartModify.class);
+
+            System.out.println(jsonReqShoppingCartModify.toString());
+
+            sendSuccessMessage("成功修改成功", null);
+        }catch (Exception e){
+
+        }
 
         return SUCCESS;
     }

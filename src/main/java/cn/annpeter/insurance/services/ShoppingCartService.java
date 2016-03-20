@@ -4,8 +4,9 @@ import cn.annpeter.insurance.daos.KaDanDao;
 import cn.annpeter.insurance.daos.ProductDao;
 import cn.annpeter.insurance.daos.ShoppingCartDao;
 import cn.annpeter.insurance.entities.ShoppingCart;
-import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonResShoppingCart;
-import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonShoppingCart;
+import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonResShoppingCartList;
+import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonShoppingCartList;
+import cn.annpeter.insurance.entities.jsonBeans.app.shoppingcart.JsonShoppingCartModify;
 import cn.annpeter.insurance.entities.products.ProductKaDan;
 import cn.annpeter.insurance.entities.products.Supplier;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,11 @@ public class ShoppingCartService {
     @Resource
     ShoppingCartDao shoppingCartDao;
     @Resource
-    ProductDao productDao;
-    @Resource
     KaDanDao kaDanDao;
 
-    public JsonResShoppingCart list(int member_id){
+    public JsonResShoppingCartList list(int member_id){
 
-        JsonResShoppingCart jsonResponseShoppingCart = new JsonResShoppingCart();
+        JsonResShoppingCartList jsonResponseShoppingCart = new JsonResShoppingCartList();
 
         jsonResponseShoppingCart.setMemver_id(member_id);
 
@@ -41,10 +40,11 @@ public class ShoppingCartService {
             ShoppingCart shoppingCart = it.next();
 
             int productId = shoppingCart.getProduct_id();
+            //卡单里面有product的信息,所以这里直接获取卡单的信息就够了
             ProductKaDan productKaDan = kaDanDao.getByProductId(productId);
             Supplier supplier = productKaDan.getProduct().getSupplier();
 
-           JsonShoppingCart jsonShoppingCart =  new JsonShoppingCart(productId, supplier.getId(), supplier.getTitle(),
+           JsonShoppingCartList jsonShoppingCart =  new JsonShoppingCartList(productId, supplier.getId(), supplier.getTitle(),
                    supplier.getLogo(), productKaDan.getName(), productKaDan.getPrice(), shoppingCart.getNum());
 
             jsonResponseShoppingCart.getJsonShoppingCarts().add(jsonShoppingCart);
@@ -53,4 +53,11 @@ public class ShoppingCartService {
         return  jsonResponseShoppingCart;
     }
 
+
+    public Object modify(JsonShoppingCartModify jsonShoppingCartModify){
+
+
+
+        return null;
+    }
 }

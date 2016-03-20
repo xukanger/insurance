@@ -19,13 +19,13 @@ import java.util.Map;
  * Created by annpeter on 3/15/16.
  */
 @Controller
-public class JsonBaseResponseAction extends BaseRequestAction {
+public class JsonBaseResAction extends BaseRequestAction {
 
     private InputStream inputStream;
     private Gson gson;
     private Map<String, Object> jsonMap;
 
-    public JsonBaseResponseAction(){
+    public JsonBaseResAction(){
         gson = new Gson();
         jsonMap = new HashMap<String, Object>();
     }

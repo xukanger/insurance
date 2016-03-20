@@ -1,6 +1,6 @@
 package cn.annpeter.insurance.actions.app;
 
-import cn.annpeter.insurance.actions.JsonBaseResponseAction;
+import cn.annpeter.insurance.actions.JsonBaseResAction;
 import cn.annpeter.insurance.entities.DemoBean;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -16,7 +16,7 @@ import java.io.UnsupportedEncodingException;
 @Namespace("/app/demo")
 @ParentPackage("appDefault")
 @Controller
-public class DemoAction extends JsonBaseResponseAction {
+public class DemoAction extends JsonBaseResAction {
 
     DemoBean demoBean;
 

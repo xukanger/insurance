@@ -6,12 +6,12 @@ import java.util.List;
 /**
  * Created by annpeter on 3/19/16.
  */
-public class JsonResShoppingCart {
+public class JsonResShoppingCartList {
     Integer memver_id;
 
-    List<JsonShoppingCart> jsonShoppingCarts;
+    List<JsonShoppingCartList> jsonShoppingCarts;
 
-    public JsonResShoppingCart(){
+    public JsonResShoppingCartList(){
         if(jsonShoppingCarts == null){
             jsonShoppingCarts = new ArrayList<>();
         }
@@ -25,11 +25,11 @@ public class JsonResShoppingCart {
         this.memver_id = memver_id;
     }
 
-    public List<JsonShoppingCart> getJsonShoppingCarts() {
+    public List<JsonShoppingCartList> getJsonShoppingCarts() {
         return jsonShoppingCarts;
     }
 
-    public void setJsonShoppingCarts(List<JsonShoppingCart> jsonShoppingCarts) {
+    public void setJsonShoppingCarts(List<JsonShoppingCartList> jsonShoppingCarts) {
         this.jsonShoppingCarts = jsonShoppingCarts;
     }
 }

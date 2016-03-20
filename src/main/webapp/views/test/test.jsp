@@ -21,10 +21,19 @@
     $(function(){
 
         $("#div").click(function(){
-            $.post("http://localhost:8080/app/demo/index",{
-                        "demoBean.id":"123",
-                        "demoBean.name":"456"
-                    },
+
+            var jsObj = {
+                "memver_id":"1",
+                "jsonShoppingCartModifies":[
+                    {"id":1, "num":1},
+                    {"id":2, "num":2},
+                    {"id":3, "num":3}
+                ]
+            };
+
+            var str = JSON.stringify(jsObj);
+
+            $.post("http://localhost:8080/app/shoppingcart/modify",{"reqJsonStr":str},
             function(result){
                 alert(result);
             });

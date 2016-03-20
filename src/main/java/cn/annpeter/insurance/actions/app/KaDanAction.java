@@ -1,6 +1,6 @@
 package cn.annpeter.insurance.actions.app;
 
-import cn.annpeter.insurance.actions.JsonBaseResponseAction;
+import cn.annpeter.insurance.actions.JsonBaseResAction;
 import cn.annpeter.insurance.entities.jsonBeans.app.kadan.JsonResKaDanList;
 import cn.annpeter.insurance.entities.jsonBeans.app.kadan.JsonResKaDanProfile;
 import cn.annpeter.insurance.services.KaDanService;
@@ -23,7 +23,7 @@ import java.util.List;
 @Namespace("/app/kadan")
 @ParentPackage("appDefault")
 @Controller
-public class KaDanAction extends JsonBaseResponseAction {
+public class KaDanAction extends JsonBaseResAction {
 
     @Resource
     private KaDanService kaDanService;
