@@ -2,7 +2,7 @@
 
 ###请求查看所有卡单(/app/kadan/list)
 * 返回json样例
-	```json
+	```vim
 	{
 	  "result": [
 		{
