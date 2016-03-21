@@ -1,15 +1,16 @@
 package cn.annpeter.insurance.actions.admin;
 
 import cn.annpeter.insurance.actions.JsonBaseResAction;
-import org.apache.struts2.ServletActionContext;
 import cn.annpeter.insurance.entities.User;
 import cn.annpeter.insurance.services.UserService;
 import cn.org.rapid_framework.page.Page;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.stereotype.Controller;
+
 import javax.annotation.Resource;
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 @Namespace("/admin/user")
 @ParentPackage("adminDefault")
 @Controller
-public class UserAction extends JsonBaseResAction {
+public class   UserAction extends JsonBaseResAction {
 
 	private static final long serialVersionUID = 3097879606840479844L;
 

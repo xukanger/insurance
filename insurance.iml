@@ -34,7 +34,7 @@
       <configuration>
         <datasource-map>
           <unit-entry name="hibernate.cfg.xml" value="c4278e54-1d68-40e0-9593-9edf6d790c40" />
-          <unit-entry name="sessionFactory" value="dataSource" />
+          <unit-entry name="sessionFactory" value="44317219-4ec4-4042-a962-3cd1027c4fd7" />
           <unit-entry name="src:main:config:hibernate.cfg.xml" />
         </datasource-map>
         <naming-strategy-map />

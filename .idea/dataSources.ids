@@ -9,4 +9,13 @@
   <data-source name="dataSource" uuid="0bbb7213-1edc-48c7-abde-e2dc7e5fb5f4">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
+  <data-source name="sessionFactory/Hibernate" uuid="44317219-4ec4-4042-a962-3cd1027c4fd7">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="sessionFactory/Hibernate" uuid="781da008-f631-46c6-9185-a7e6f05f1cbd">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="MySQL - insurance@localhost" uuid="fa170048-098f-44b4-bf4a-d8dc7fa8f43a">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
 </component>

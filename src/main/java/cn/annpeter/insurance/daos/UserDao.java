@@ -1,18 +1,14 @@
 package cn.annpeter.insurance.daos;
 
-import java.sql.Date;
-import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import cn.org.rapid_framework.page.Page;
-import oracle.net.aso.q;
 import cn.annpeter.insurance.entities.User;
 import cn.annpeter.insurance.utils.ExceptionUtils;
+import cn.org.rapid_framework.page.Page;
+import org.hibernate.Query;
 import org.hibernate.metamodel.relational.Sequence;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
